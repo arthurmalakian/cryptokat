@@ -24,7 +24,7 @@ class HistoryServiceImpl implements HistoryService
         try
         {
             $coin = Coin::where('gecko_id',"=",$gecko_id)->firstOrFail();
-            $query = History::where('coin_id',$coin->id)->where('date',$date)->get();
+            $query = History::where('coin_id',$coin->id)->where('date',Carbon::parse($date)->toDateString())->get();
             if($query->isEmpty()){
                 return $this->createCoinHistoryFromDate($gecko_id,$date);
             }
@@ -41,7 +41,7 @@ class HistoryServiceImpl implements HistoryService
         try
         {
             $coin = Coin::where('gecko_id',"=",$gecko_id)->firstOrFail();
-            $query = History::where('coin_id',$coin->id)->where('date',Carbon::today()->subDay(1)->format('d-m-Y'))->get();
+            $query = History::where('coin_id',$coin->id)->where('date',Carbon::today()->subDay(1))->get();
             if($query->isEmpty()){
                 return $this->createCoinHistoryFromDate($gecko_id,Carbon::today()->subDay(1)->format('d-m-Y'));
             }
