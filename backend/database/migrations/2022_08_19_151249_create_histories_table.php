@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('histories', function (Blueprint $table) {
             $table->id();
             $table->double('usd_value')->require();
-            $table->date('date')->require()->unique();
+            $table->date('date')->require();
             $table->unsignedBigInteger('coin_id')->require();
             $table->foreign('coin_id')->references('id')->on('coins');
             $table->timestamps();
