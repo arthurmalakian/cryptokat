@@ -32,7 +32,7 @@ class HistoryServiceImpl implements HistoryService
 
         }catch(\Exception $exception)
         {
-            return response('Not found',404);
+            return response($exception,404);
         }
     }
 
@@ -48,7 +48,7 @@ class HistoryServiceImpl implements HistoryService
             return response(new HistoryResource($query),200);
         }catch(\Exception $exception)
         {
-            return response('Not found',404);
+            return response($exception,404);
         }
     }
 
